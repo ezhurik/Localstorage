@@ -17,14 +17,14 @@
 		// clearLocalStorage();
 
 		// call this method and pass the paramter which you want to store in localstorage
-		setLocalStorage(4);
+		setLocalStorage(5);
 
 		var arr=getLocalStorage();
 		console.log(arr);
 		console.log(arr.length);
 		$("#displayDiv").text(" Total Items = "+arr.length);
 
-		
+
 		// this method clears all the variables stored in localstorage
 		function clearLocalStorage()
 		{
@@ -47,10 +47,10 @@
 				if(!checkExists($id))
 				{
 					var retrievedData = localStorage.getItem("myCart");
-					var cartItemsArrRetrieved = JSON.parse(retrievedData);
-					var lengthArr = cartItemsArrRetrieved.length;
-					cartItemsArrRetrieved[lengthArr]=$id;
-					localStorage.setItem("myCart", JSON.stringify(cartItemsArrRetrieved));
+					var retrievedData = JSON.parse(retrievedData);
+					var lengthArr = retrievedData.length;
+					retrievedData[lengthArr]=$id;
+					localStorage.setItem("myCart", JSON.stringify(retrievedData));
 					console.log(localStorage.getItem("myCart"));
 				}
 				else
@@ -66,8 +66,8 @@
 		{
 			// console.log(jQuery.type($id));
 			var retrievedData = localStorage.getItem("myCart");
-			var cartItemsArrRetrieved = JSON.parse(retrievedData);
-			if ($.inArray($id, cartItemsArrRetrieved) != -1)
+			var retrievedData = JSON.parse(retrievedData);
+			if ($.inArray($id, retrievedData) != -1)
 			{
 				return true;
 			}
@@ -84,8 +84,8 @@
 			if (localStorage.getItem("myCart") !== null) 
 			{
 				var retrievedData = localStorage.getItem("myCart");
-				var cartItemsArrRetrieved = JSON.parse(retrievedData);
-				return cartItemsArrRetrieved;
+				var retrievedData = JSON.parse(retrievedData);
+				return retrievedData	;
 			}
 		}
 
