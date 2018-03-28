@@ -13,16 +13,31 @@
 </body>
 </html>
 <script type="text/javascript">
+		var totalElements =0;
 
-		// clearLocalStorage();
+		clearLocalStorage();
 
 		// call this method and pass the paramter which you want to store in localstorage
-		setLocalStorage(5);
+		// setLocalStorage(1);
 
+		// this method removes the value from the array in localstorage
+		// removeItem(5);
+
+		// gets the items stored in the localstorage
 		var arr=getLocalStorage();
+
+		// array values
 		console.log(arr);
-		console.log(arr.length);
-		$("#displayDiv").text(" Total Items = "+arr.length);
+
+
+		if (typeof arr !== 'undefined') 
+		{
+			totalElements =arr.length;
+		}
+		
+
+
+		$("#displayDiv").text(" Total Items = "+totalElements);
 
 
 		// this method clears all the variables stored in localstorage
@@ -36,10 +51,9 @@
 		{
 			if(localStorage.getItem("myCart") == null)
 			{
-				var cartItemsArr = [];
+				var cartItemsArr = [];	
 				cartItemsArr[0] = $id;
 				localStorage.setItem("myCart",JSON.stringify(cartItemsArr));
-				console.log(cartItemsArr[0]);
 			}
 			else
 			{
@@ -51,7 +65,7 @@
 					var lengthArr = retrievedData.length;
 					retrievedData[lengthArr]=$id;
 					localStorage.setItem("myCart", JSON.stringify(retrievedData));
-					console.log(localStorage.getItem("myCart"));
+					// console.log(localStorage.getItem("myCart"));
 				}
 				else
 				{
@@ -61,10 +75,9 @@
 			}
 		}
 
-		//checks if the paramater is already added or not
+		//checks if the paramater already exists in array or not
 		function checkExists($id)
 		{
-			// console.log(jQuery.type($id));
 			var retrievedData = localStorage.getItem("myCart");
 			var retrievedData = JSON.parse(retrievedData);
 			if ($.inArray($id, retrievedData) != -1)
@@ -87,6 +100,22 @@
 				var retrievedData = JSON.parse(retrievedData);
 				return retrievedData	;
 			}
+		}
+
+		// removes specific value from local stroage array
+		function removeItem($value)
+		{
+			var retrievedData = localStorage.getItem("myCart");
+			var retrievedData = JSON.parse(retrievedData);
+			
+			var index = retrievedData.indexOf($value);
+
+			if (index !== -1) {
+				retrievedData.splice(index, 1);
+			}
+
+			clearLocalStorage();
+			localStorage.setItem("myCart",JSON.stringify(retrievedData));
 		}
 
 	</script>
