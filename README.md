@@ -13,3 +13,5 @@ The functionalities implemented are
 -> Clearing localstroage items
 
 -> Checking whether the item is already added to the localstorage before adding it
+
+-> Removes the specific item from the local storage
